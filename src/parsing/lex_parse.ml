@@ -11,7 +11,7 @@ let parse_program lexbuf =
   | SyntaxError msg ->
       let error_msg = Fmt.str "%s: %s@." (print_error_position lexbuf) msg in
       Error (Error.of_string error_msg)
-  | Parser.Error ->
+  | Parser.Error    ->
       let error_msg = Fmt.str "%s: syntax error@." (print_error_position lexbuf) in
       Error (Error.of_string error_msg)
 

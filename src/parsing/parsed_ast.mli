@@ -23,8 +23,6 @@ type expr =
 and block_expr = Block of loc * expr list
 
 type function_defn =
-  | TFunction of
-      Function_name.t * modifier option * type_expr * param list * block_expr
-
+  | TFunction of Function_name.t * modifier option * type_expr * param list * block_expr
 
 type program = Prog of function_defn list * block_expr

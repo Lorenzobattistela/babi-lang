@@ -14,7 +14,7 @@ let rec pprint_expr ppf ~indent expr =
   | Identifier (_, id) -> (
     match id with
     | Variable var_name ->
-        print_expr (Fmt.str "Variable: %s" (Var_name.to_string var_name)))
+        print_expr (Fmt.str "Variable: %s" (Var_name.to_string var_name)) )
   | Let (_, optional_type, var_name, bound_expr) ->
       print_expr (Fmt.str "Let var: %s" (Var_name.to_string var_name)) ;
       ( match optional_type with
