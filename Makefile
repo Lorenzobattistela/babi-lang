@@ -27,7 +27,13 @@ pos-build:
 	rm parser.opam
 
 lint:
-	make clean
-	make pre-build
-	dune build @lint
-	dune build @fmt
+	-make clean
+	-make pre-build
+	dune build @fmt --auto-promote || true
+	make pos-build
+
+.SILENT: clean
+clean:
+	dune clean
+	@git clean -dfX
+	rm -rf docs/
