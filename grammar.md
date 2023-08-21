@@ -9,7 +9,6 @@ n       integer
 b       boolean
 T       type parameter
 j,k,l   index variable
-syntm   syntactic marker
 
 
 program     ::= 
@@ -18,8 +17,10 @@ program     ::=
 modifier    ::= 
             | const
             | var
+            | rec (recursive)
 
 param                   ::=         (method / function parameter)
+                        | type modifier x 
                         | type x
 
 type        :==
