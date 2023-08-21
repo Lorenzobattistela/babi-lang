@@ -5,7 +5,7 @@ This language project aims to study language design and compilers, and to have f
 
 ## TODO
 
-- [] Language Design: create grammar
+- [x] Language Design: create grammar
 - [] Create Lexer
 - [] Create Parser
 - [] AST
