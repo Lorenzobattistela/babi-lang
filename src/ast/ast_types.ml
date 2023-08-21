@@ -30,23 +30,14 @@ type modifier = MRec
 
 let string_of_modifier = function MRec -> "Rec"
 
-type type_expr =
-  | TEInt
-  | TEVoid
-  | TEBool
+type type_expr = TEInt | TEVoid | TEBool
 
-let string_of_type = function
-  | TEInt -> "Int"
-  | TEVoid -> "Void"
-  | TEBool -> "Bool"
+let string_of_type = function TEInt -> "Int" | TEVoid -> "Void" | TEBool -> "Bool"
 
-
-type param =
-  | TParam of type_expr * Var_name.t
+type param = TParam of type_expr * Var_name.t
 
 let get_params_types params =
   List.map ~f:(fun (TParam (param_type, _)) -> param_type) params
-
 
 (* BINARY OPERATORS *)
 type bin_op =
