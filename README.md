@@ -6,9 +6,9 @@ This language project aims to study language design and compilers, and to have f
 ## TODO
 
 - [x] Language Design: create grammar
-- [] Create Lexer
-- [] Create Parser
-- [] AST
-- [] Linting
+- [x] Create Lexer
+- [x] Create Parser
+- [x] AST
+- [x] Linting
 - [] Type Checking
 - [] more stuff that i havent mapped yet
