@@ -19,12 +19,12 @@ build:
 pre-build:
 	# hack: create opam files so libraries can be exposed publicly
 	cp babi.opam ast.opam
-	cp babi.opam parser.opam
+	cp babi.opam parsing.opam
 
 .SILENT: pos-build
 pos-build:
 	rm ast.opam
-	rm parser.opam
+	rm parsing.opam
 
 lint:
 	-make clean
