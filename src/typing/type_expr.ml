@@ -3,7 +3,6 @@ open Parsing
 open Type_env
 open Core
 
-
 (* This checks the type of arguments passed to a function*)
 let type_args type_expr_fn args env =
   let open Result in
@@ -25,7 +24,6 @@ let rec type_expr function_defns (expr : Parsed_ast.expr) env =
   let open Result in
   let type_with_defns = type_expr function_defns in
   let type_block_with_defns = type_block_expr function_defns in
-
   match expr with
   | Parsed_ast.Integer (loc, i) -> Ok (Typed_ast.Integer (loc, i), TEInt)
   | Parsed_ast.Boolean (loc, b) -> Ok (Typed_ast.Boolean (loc, b), TEBool)
@@ -70,7 +68,6 @@ let rec type_expr function_defns (expr : Parsed_ast.expr) env =
                 (string_of_loc loc)
                 (string_of_type assigned_expr_type)
                 (string_of_type id_type)))
-
   | Parsed_ast.FunctionApp (loc, func_name, args_exprs) ->
       type_args type_with_defns args_exprs env
       >>= fun (typed_args_exprs, args_types) ->
@@ -94,7 +91,6 @@ let rec type_expr function_defns (expr : Parsed_ast.expr) env =
          for free *)
       type_args type_with_defns args env
       >>| fun (typed_args, _) -> (Typed_ast.Printf (loc, format_str, typed_args), TEVoid)
-
   | Parsed_ast.If (loc, cond_expr, then_expr, else_expr) -> (
       type_with_defns cond_expr env
       >>= fun (typed_cond_expr, cond_expr_type) ->
