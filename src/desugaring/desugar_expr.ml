@@ -1,13 +1,4 @@
 open Core
-open Free_obj_vars_expr
-open Ast.Ast_types
-open Desugar_env
-
-let dedup_free_vars free_vars =
-  List.dedup_and_sort
-    ~compare:(fun (var_name_1, _, _) (var_name_2, _, _) ->
-      if var_name_1 = var_name_2 then 0 else 1)
-    free_vars
 
 let desugar_identifier id =
   match id with
@@ -29,7 +20,7 @@ let rec desugar_expr  expr =
       |> fun desugared_bound_expr ->
       Desugared_ast.Let (loc, type_expr, var_name, desugared_bound_expr)
   | Typing.Typed_ast.Assign (loc, type_expr, id, assigned_expr) ->
-      desugar_expr_vars assigned_expr
+      desugar_expr assigned_expr
       |> fun desugared_assigned_expr ->
       desugar_identifier id
       |> fun desugared_id ->

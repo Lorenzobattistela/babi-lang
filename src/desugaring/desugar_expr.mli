@@ -1,7 +1,5 @@
 (** This module desugars the typed AST's exprs *)
 
-open Ast.Ast_types
-
 val desugar_expr :
     Typing.Typed_ast.expr
     -> Desugared_ast.expr
