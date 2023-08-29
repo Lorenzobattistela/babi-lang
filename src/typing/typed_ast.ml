@@ -28,6 +28,6 @@ and block_expr = Block of loc * type_expr * expr list
 (** Function defn consists of the function name, return type (and whether it returns a
     borrowed ref), the list of params, and the body expr of the function *)
 type function_defn =
-  | TFunction of Function_name.t * recursive option * type_expr * param list * block_expr
+  | TFunction of Function_name.t * modifier option * type_expr * param list * block_expr
 
 type program = Prog of function_defn list * block_expr
