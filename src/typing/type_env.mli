@@ -21,3 +21,6 @@ val check_no_var_shadowing_in_block :
   Parsing.Parsed_ast.expr list -> loc -> unit Or_error.t
 
 val check_variable_declarable : Var_name.t -> loc -> unit Or_error.t
+
+val check_identifier_assignable :
+  Parsing.Parsed_ast.identifier -> loc -> unit Or_error.t
