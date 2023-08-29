@@ -16,6 +16,7 @@ let rec pprint_expr ppf ~indent expr =
     | Variable (var_type, _) ->
         print_expr (string_of_id id) ;
         pprint_type_expr ppf ~indent:new_indent var_type
+    )
   | BlockExpr (_, block_expr) ->
       pprint_block_expr ppf ~indent:new_indent ~block_name:"" block_expr
   | Let (_, type_expr, var_name, bound_expr) ->
@@ -74,7 +75,7 @@ let pprint_function_defn ppf ~indent
     (TFunction (func_name, maybe_recursive_modifier, return_type, params, body_expr)) =
   let new_indent = indent_space ^ indent in
   let string_of_maybe_recursive_modifier =
-    match maybe_recursive_modifier with Some Recursive -> "Recursive " | None -> "" in
+    match maybe_recursive_modifier with Some MRec -> "Recursive " | None -> "" in
   Fmt.pf ppf "%s Function: %s@." indent (Function_name.to_string func_name) ;
   Fmt.pf ppf "%s Return type: %s%s@." new_indent string_of_maybe_recursive_modifier
     (string_of_type return_type) ;
