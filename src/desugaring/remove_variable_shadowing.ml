@@ -27,6 +27,11 @@ let remove_identifier_var_shadowing id var_name_map =
       >>| fun unique_var_name ->
       Variable (var_type, unique_var_name)
 
+let rec init_var_map_from_params = function
+  | [] -> []
+  | TParam (_, param_name) :: params ->
+      (param_name, param_name) :: init_var_map_from_params params
+
 let rec remove_var_shadowing_expr expr var_name_map =
   let open Result in
   (* Apply to a list of exprs with independent environments *)
