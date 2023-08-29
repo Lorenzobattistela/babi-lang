@@ -17,12 +17,12 @@ let rec get_var_type (var_name : Var_name.t) (env : type_env) loc =
       if var_name' = var_name then Ok var_type else get_var_type var_name env' loc
 
 let get_params_types params =
-  List.map ~f:(fun (TParam (param_type, _, _, _)) -> param_type) params
+  List.map ~f:(fun (TParam (param_type, _)) -> param_type) params
 
 let get_function_type func_name function_defns loc =
   let matching_function_defns =
     List.filter
-      ~f:(fun (Parsing.Parsed_ast.TFunction (name, _, _)) -> func_name = name)
+      ~f:(fun (Parsing.Parsed_ast.TFunction (name, _, _, _, _)) -> func_name = name)
       function_defns in
   match matching_function_defns with
   | [] ->
@@ -68,3 +68,14 @@ let check_variable_declarable var_name loc =
       (Error.of_string
          (Fmt.str "%s Type error - Trying to declare 'this'.@." (string_of_loc loc)))
   else Ok ()
+
+let check_identifier_assignable id loc =
+  let open Result in
+  match id with
+  | Parsing.Parsed_ast.Variable x ->
+      if x = Var_name.of_string "this" then
+        Error
+          (Error.of_string
+              (Fmt.str "%s Type error - Assigning expr to 'this'.@." (string_of_loc loc)))
+      else Ok ()
+
