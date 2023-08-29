@@ -21,12 +21,16 @@ pre-build:
 	cp babi.opam ast.opam
 	cp babi.opam parsing.opam
 	cp babi.opam typing.opam
+	cp babi.opam ir_gen.opam
+	cp babi.opam desugaring.opam
 
 .SILENT: pos-build
 pos-build:
 	rm ast.opam
 	rm parsing.opam
 	rm typing.opam
+	rm ir_gen.opam
+	rm desugaring.opam
 
 lint:
 	-make clean
