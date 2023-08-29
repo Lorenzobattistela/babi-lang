@@ -4,8 +4,7 @@ open Ast.Ast_types
 type identifier =
   | Variable of type_expr * Var_name.t
 
-let string_of_id = function
-  | Variable (_, var_name) -> Fmt.str "Variable: %s" (Var_name.to_string var_name)
+val string_of_id : identifier -> string
 
 (* Similar to Parsed AST, only we add an extra type_expr annotation to denote the overall
    type of the expression. For loop is desugared to while loop *)
@@ -31,6 +30,6 @@ and block_expr = Block of loc * type_expr * expr list
     borrowed ref), the list of params, and the body expr of the function *)
 type function_defn =
   | TFunction of
-      Function_name.t * recursive option * type_expr * param list * block_expr
+      Function_name.t * modifier option * type_expr * param list * block_expr
 
 type program = Prog of function_defn list * block_expr
