@@ -4,7 +4,7 @@ open Type_expr
 
 let init_env_from_params params =
   List.map
-    ~f:(function TParam (type_expr, param_name_) -> (param_name, type_expr))
+    ~f:(function TParam (type_expr, param_name) -> (param_name, type_expr))
     params
 
 let type_function_defn function_defns
