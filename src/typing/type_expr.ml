@@ -51,7 +51,7 @@ let rec type_expr function_defns (expr : Parsed_ast.expr) env =
       >>| fun var_type ->
       (Typed_ast.Let (loc, var_type, var_name, typed_bound_expr), var_type)
   | Parsed_ast.Assign (loc, id, assigned_expr) ->
-      check_identifier_assignable id env loc
+      check_identifier_assignable id loc
       >>= fun () ->
       type_identifier id env loc
       >>= fun (typed_id, id_type) ->
