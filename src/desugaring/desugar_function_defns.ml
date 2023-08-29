@@ -1,6 +1,4 @@
 open Desugar_expr
-open Ast.Ast_types
-open Core
 
 let desugar_function_defn
     (Typing.Typed_ast.TFunction
